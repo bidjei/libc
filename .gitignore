@@ -1,0 +1,12 @@
+
+# 1. Ignore absolutely everything everywhere
+*
+
+# 2. Allow Git to traverse into directories (the trailing slash is crucial)
+!*/
+!**/ */
+
+# 3. Un-ignore your C and Header files at any depth
+!.gitignore
+!**/*.c
+!**/*.h
