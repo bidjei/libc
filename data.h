@@ -17,13 +17,31 @@ typedef        ssize_t               mut_diff, *MutDiff;
 typedef        int                   mut_sint, *MutSInt;
 typedef        unsigned              mut_uint, *MutUInt;
 typedef union  mut_sint_array  mut_sint_array, *MutSIntArray;
-typedef union  mut_uint_array  mut_uint_array, *MutUIntArray;
 typedef        size_t                mut_size, *MutSize;
+typedef        int8_t                  mut_s8, *MutS8;
+typedef        int16_t                mut_s16, *MutS16;
+typedef        int32_t                mut_s32, *MutS32;
+typedef        int64_t                mut_s64, *MutS64;
+typedef union  mut_uint_array  mut_uint_array, *MutUIntArray;
+typedef        uint8_t                 mut_u8, *MutU8;
+typedef        uint16_t               mut_u16, *MutU16;
+typedef        uint32_t               mut_u32, *MutU32;
+typedef        uint64_t               mut_u64, *MutU64;
 typedef struct mut_memory          mut_memory, *MutMemory;
 typedef const  mut_byte                  byte, *Byte;
 typedef const  mut_diff                  diff, *Diff;
 typedef const  mut_size                  size, *Size;
 typedef const  mut_memory              memory, *Memory;
+typedef const  mut_sint_array      sint_array, *SIntArray;
+typedef const  int8_t                      s8, *S8;
+typedef const  int16_t                    s16, *S16;
+typedef const  int32_t                    s32, *S32;
+typedef const  int64_t                    s64, *S64;
+typedef const  mut_uint_array      uint_array, *UIntArray;
+typedef const  uint8_t                     u8, *U8;
+typedef const  uint16_t                   u16, *U16;
+typedef const  uint32_t                   u32, *U32;
+typedef const  uint64_t                   u64, *U64;
 
 
 struct dyn_memory
