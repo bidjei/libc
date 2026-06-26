@@ -29,6 +29,11 @@ typedef        int                   mut_sint, *MutSInt;
 typedef        unsigned              mut_uint, *MutUInt;
 
 typedef union  mut_sint_array  mut_sint_array, *MutSIntArray;
+typedef union  mut_s8_array      mut_s8_array, *MutS8Array;
+typedef union  mut_s16_array    mut_s16_array, *MutS16Array;
+typedef union  mut_s32_array    mut_s32_array, *MutS32Array;
+typedef union  mut_s64_array    mut_s64_array, *MutS64Array;
+
 typedef        size_t                mut_size, *MutSize;
 typedef        int8_t                  mut_s8, *MutS8;
 typedef        int16_t                mut_s16, *MutS16;
@@ -36,6 +41,11 @@ typedef        int32_t                mut_s32, *MutS32;
 typedef        int64_t                mut_s64, *MutS64;
 
 typedef union  mut_uint_array  mut_uint_array, *MutUIntArray;
+typedef union  mut_s8_array      mut_s8_array, *MutS8Array;
+typedef union  mut_s16_array    mut_s16_array, *MutS16Array;
+typedef union  mut_s32_array    mut_s32_array, *MutS32Array;
+typedef union  mut_s64_array    mut_s64_array, *MutS64Array;
+
 typedef        uint8_t                 mut_u8, *MutU8;
 typedef        uint16_t               mut_u16, *MutU16;
 typedef        uint32_t               mut_u32, *MutU32;
@@ -75,7 +85,7 @@ union mut_u16_array  { mut_memory  memory; struct { mut_size size; MutU16  items
 union mut_u32_array  { mut_memory  memory; struct { mut_size size; MutU32  items; }; };
 union mut_u64_array  { mut_memory  memory; struct { mut_size size; MutU64  items; }; };
 
-union dyn_sint_array { dyn_memory  memory; struct { mut_size size; mut_size capacity; MutSInt items; };};
+union dyn_sint_array { dyn_memory  memory; struct { mut_size size; mut_size capacity; MutSInt items; }; };
 union dyn_s8_array   { dyn_memory  memory; struct { mut_size size; mut_size capacity; MutS8   items; }; };
 union dyn_s16_array  { dyn_memory  memory; struct { mut_size size; mut_size capacity; MutS16  items; }; };
 union dyn_s32_array  { dyn_memory  memory; struct { mut_size size; mut_size capacity; MutS32  items; }; };
@@ -89,27 +99,27 @@ union dyn_u64_array  { dyn_memory  memory; struct { mut_size size; mut_size capa
 
 
 #define allocate(descriptor) _Generic((descriptor),        \
-    DynMemory: allocate_dyn_memory,                        \
-    MutMemory: allocate_memory                             \
+    DynMemory: allocate_DynMemory,                         \
+    MutMemory: allocate_MutMemory                          \
 )(descriptor)
 
-_Bool allocate_dyn_memory   (DynMemory this);
-_Bool allocate_memory       (MutMemory this);
+_Bool allocate_DynMemory   (DynMemory this);
+_Bool allocate_MutMemory   (MutMemory this);
 
 
-#define deallocate(descriptor) _Generic((descriptor),      \
-    DynMemory: deallocate_dyn_memory,                      \
-    MutMemory: deallocate_memory                           \
-)(descriptor)
+#define deallocate(this) _Generic((this),                  \
+    DynMemory: deallocate_DynMemory,                       \
+    MutMemory: deallocate_MutMemory                        \
+)(this)
 
-_Bool deallocate_dyn_memory (DynMemory this);
-_Bool deallocate_memory     (MutMemory this);
+_Bool deallocate_DynMemory (DynMemory this);
+_Bool deallocate_MutMemory  (MutMemory this);
 
 
 #define grow_to(descriptor, size) _Generic((descriptor),   \
-    DynMemory: grow_dyn_memory_to,                         \
-    MutMemory: grow_memory_to                              \
+    DynMemory: grow_DynMemory_to,                          \
+    MutMemory: grow_MutMemory_to                           \
 )(descriptor, size)
 
-_Bool grow_dyn_memory_to (DynMemory this, mut_size size);
-_Bool grow_memory_to     (MutMemory this, mut_size size);
+_Bool grow_DynMemory_to (DynMemory this, mut_size size);
+_Bool grow_MutMemory_to (MutMemory this, mut_size size);

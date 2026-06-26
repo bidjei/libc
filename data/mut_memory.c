@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 
-_Bool allocate_memory (MutMemory this)
+_Bool allocate_MutMemory (MutMemory this)
 {
 	assert(      this && "MutMemory was not provided to allocate");
 	assert(this->size && "MutMemory has no size to allocate");
@@ -16,7 +16,7 @@ _Bool allocate_memory (MutMemory this)
 }
 
 
-_Bool deallocate_memory (MutMemory this)
+_Bool deallocate_MutMemory (MutMemory this)
 {
 	assert(      this && "MutMemory was not provided to deallocate");
 	assert(this->data && "Memory has nothing to deallocate");
@@ -26,7 +26,7 @@ _Bool deallocate_memory (MutMemory this)
 }
 
 
-_Bool grow_memory_to (MutMemory this, mut_size size) {
+_Bool grow_MutMemory_to (MutMemory this, mut_size size) {
 	assert(this              && "MutMemory was not provided to grow");
 	assert(this->size < size && "Requested size is not within the capacity");
 

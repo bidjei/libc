@@ -7,16 +7,16 @@
 void test_dyn_memory()
 {
 	#define MiB (1024 * 1024)
-	dyn_memory mock = {.size = 1024, .capacity = MiB};
+	dyn_uint_array mock = {.size = 1024, .capacity = MiB};
 
-	assert(allocate(&mock));
-	assert(mock.data != 0);
+	assert(allocate(&mock.memory));
+	assert(mock.items != 0);
 	assert(mock.size == 1024);
 	assert(mock.capacity == MiB);
-	assert(grow_to(&mock, 2048));
-	assert(mock.data != 0);
+	assert(grow_to(&mock.memory, 2048));
+	assert(mock.items != 0);
 	assert(mock.size == 2048);
 	assert(mock.capacity == MiB);
-	assert(deallocate(&mock));
-	assert(mock.data == 0 && mock.size == 0 && mock.capacity == 0);
+	assert(deallocate(&mock.memory));
+	assert(mock.items == 0 && mock.size == 0 && mock.capacity == 0);
 }

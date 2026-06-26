@@ -6,7 +6,7 @@
 #include <sys/mman.h>
 
 
-_Bool allocate_dyn_memory(DynMemory this)
+_Bool allocate_DynMemory(DynMemory this)
 {
 	assert(       this && "DynMemory was not provided to allocate");
 	assert(!this->data && "Cannot call allocate on DynMemory with data");
@@ -21,20 +21,22 @@ _Bool allocate_dyn_memory(DynMemory this)
 }
 
 
-_Bool deallocate_dyn_memory(DynMemory this)
+_Bool deallocate_DynMemory(DynMemory this)
 {
 	assert(      this && "DynMemory was not provided to deallocate");
 	assert(this->data && "Cannot call deallocate on DynMemory without data");
 
 	if (-1 == munmap(this->data, this->capacity)) return 0;
-	this->data = 0;
-	this->size = 0;
+
+	this->data     = 0;
+	this->size     = 0;
 	this->capacity = 0;
+
 	return 1;
 }
 
 
-_Bool grow_dyn_memory_to(DynMemory this, mut_size size)
+_Bool grow_DynMemory_to(DynMemory this, mut_size size)
 {
 	assert(      this && "DynMemory was not provided to resize");
 	assert(this->data && "Cannot call resize on DynMemory without data");
