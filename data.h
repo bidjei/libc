@@ -98,28 +98,22 @@ union dyn_u32_array  { dyn_memory  memory; struct { mut_size size; mut_size capa
 union dyn_u64_array  { dyn_memory  memory; struct { mut_size size; mut_size capacity; MutU64  items; }; };
 
 
-#define allocate(descriptor) _Generic((descriptor),        \
-    DynMemory: allocate_DynMemory,                         \
-    MutMemory: allocate_MutMemory                          \
-)(descriptor)
+#define allocate(this) _Generic((this), \
+	DynMemory: allocate_DynMemory, MutMemory: allocate_MutMemory)(this)
 
 _Bool allocate_DynMemory   (DynMemory this);
 _Bool allocate_MutMemory   (MutMemory this);
 
 
-#define deallocate(this) _Generic((this),                  \
-    DynMemory: deallocate_DynMemory,                       \
-    MutMemory: deallocate_MutMemory                        \
-)(this)
+#define deallocate(this) _Generic((this), \
+	DynMemory: deallocate_DynMemory, MutMemory: deallocate_MutMemory)(this)
 
 _Bool deallocate_DynMemory (DynMemory this);
 _Bool deallocate_MutMemory  (MutMemory this);
 
 
-#define grow_to(descriptor, size) _Generic((descriptor),   \
-    DynMemory: grow_DynMemory_to,                          \
-    MutMemory: grow_MutMemory_to                           \
-)(descriptor, size)
+#define grow_to(descriptor, size) _Generic((descriptor), \
+	DynMemory: grow_DynMemory_to, MutMemory: grow_MutMemory_to)(descriptor, size)
 
 _Bool grow_DynMemory_to (DynMemory this, mut_size size);
 _Bool grow_MutMemory_to (MutMemory this, mut_size size);
