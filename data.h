@@ -58,12 +58,14 @@ typedef const  mut_size                  size, *Size;
 typedef const  mut_memory              memory, *Memory;
 
 typedef const  mut_sint_array      sint_array, *SIntArray;
+typedef const  mut_sint                  sint, *SInt;
 typedef const  int8_t                      s8, *S8;
 typedef const  int16_t                    s16, *S16;
 typedef const  int32_t                    s32, *S32;
 typedef const  int64_t                    s64, *S64;
 
 typedef const  mut_uint_array      uint_array, *UIntArray;
+typedef const  mut_uint                  uint, *UInt;
 typedef const  uint8_t                     u8, *U8;
 typedef const  uint16_t                   u16, *U16;
 typedef const  uint32_t                   u32, *U32;
@@ -96,6 +98,9 @@ union dyn_u8_array   { dyn_memory  memory; struct { mut_size size; mut_size capa
 union dyn_u16_array  { dyn_memory  memory; struct { mut_size size; mut_size capacity; MutU16  items; }; };
 union dyn_u32_array  { dyn_memory  memory; struct { mut_size size; mut_size capacity; MutU32  items; }; };
 union dyn_u64_array  { dyn_memory  memory; struct { mut_size size; mut_size capacity; MutU64  items; }; };
+
+
+#define array_length(array) ((array)->size / sizeof(*(array)->items))
 
 
 #define allocate(this) _Generic((this), \

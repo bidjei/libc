@@ -10,6 +10,7 @@ void test_dyn_memory()
 	dyn_uint_array mock = {.size = 1024, .capacity = MiB};
 
 	assert(allocate(&mock.memory));
+	assert(array_length(&mock) == 1024 / sizeof(uint));
 	assert(mock.items != 0);
 	assert(mock.size == 1024);
 	assert(mock.capacity == MiB);
