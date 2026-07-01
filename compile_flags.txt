@@ -1,0 +1,5 @@
+-std=c11
+-Wall
+-Wextra
+-Werror
+-Wno-pragma-once-outside-header

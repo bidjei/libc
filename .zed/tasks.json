@@ -1,0 +1,22 @@
+[
+	{
+		"label": "make all",
+		"command": "make -C build",
+	},
+	{
+		"label": "make clean",
+		"command": "make -C build clean",
+	},
+	{
+		"label": "make lib",
+		"command": "make -C build lib",
+	},
+	{
+		"label": "make tests",
+		"command": "make -C build tests",
+	},
+	{
+		"label": "make test",
+		"command": "make -C build test",
+	},
+]

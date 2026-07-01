@@ -1,0 +1,10 @@
+[
+	{
+		"adapter": "CodeLLDB",
+		"label": "Debug test-code",
+		"request": "launch",
+		"program": "./build/test-code",
+		"cwd": ".",
+		"preLaunchTask": "make tests",
+	},
+]
